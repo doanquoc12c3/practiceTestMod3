@@ -9,13 +9,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Sửa đổi thông tin sản phẩm</title>
+    <title>Update product information</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <style>
+        .container{
+            margin-top: 5vw;
+        }
+    </style>
 </head>
 <body>
 <div class = "container">
-    <h2>Sửa Đổi Thông Tin Sản Phẩm</h2>
+    <h2>Edit product information</h2>
 
     <form method="post" action="/products?action=edit&id=${product.id}">
         <div class="mb-3">
@@ -30,7 +35,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputEmail5" class="form-label">Quantity:</label>
-            <input type="text" class="form-control" id="exampleInputEmail5" name="quantity" value="${product.quantity}" aria-describedby="emailHelp" disabled>
+            <input type="text" class="form-control" id="exampleInputEmail5" name="quantity" value="${product.quantity}" aria-describedby="emailHelp">
 
         </div>
         <div class="mb-3">
@@ -44,7 +49,8 @@
         <div class="input-group mb-3">
             <label class="input-group-text" for="inputGroupSelect01">Category:</label>
             <select class="form-control" class="form-select" id="inputGroupSelect01" name = "categoryId">
-               <option selected value="${product.categoryId}">${product.category}</option>
+               <option selected value="${product.categoryId}">Choice...</option>
+
                 <c:forEach var="category" items="${categories}">
                     <option value="${category.id}" >${category.name}</option>
                 </c:forEach>
@@ -54,7 +60,7 @@
 
         <button type="submit" class="btn btn-primary">Edit</button>
         <i class="fas fa-grip-lines-vertical"></i>
-        <a href="/products"><button class="btn btn-secondary">Back</button></a>
+        <a href="/products"><input style="width: 70px;" class="btn btn-secondary" value="Back"></a>
 
     </form>
 </div>

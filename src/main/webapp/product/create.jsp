@@ -9,13 +9,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Thêm Sản Phẩm</title>
+    <title>Add new product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <style>
+        .container{
+            margin-top: 5vw;
+        }
+    </style>
 </head>
 <body>
 <div class = "container">
-    <h2>Thêm Sản Phẩm</h2>
+    <h2>Add new product</h2>
 
     <form method="post" action="/products?action=create">
         <div class="mb-3">
@@ -54,7 +59,7 @@
 
         <a href="/products?action=create"><button type="submit" class="btn btn-primary">Create</button></a>
         <i class="fas fa-grip-lines-vertical"></i>
-        <a href="/products"><button  class="btn btn-secondary">Back</button></a>
+        <a href="/products"><input style="width: 70px;" class="btn btn-secondary" value="Back"></a>
 
     </form>
 </div>

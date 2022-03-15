@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDao implements IGeneralProductDao {
+    public static final String JDBC_SELECT_ALL = "select * from product join category on product.categoryId = category.id";
+    public static final String JDBC_SELECT_BY_ID = "select * from product join category on product.categoryId = category.id where product.id = ?";
+    public static final String JDBC_INSERT_PRODUCT = "insert into product(name, price, quantity,color, description, categoryId) values(?,?,?,?,?,?)";
+    public static final String JDBC_UPDATE_PRODUCT = "update product set name = ?, price = ?,quantity=? ,color =?, description = ?, categoryId = ? where id = ?";
+    public static final String JDBC_DELETE_PRODUCT_BY_ID = "delete from product where id = ?";
+    public static final String JDBC_FIND_PRODUCT_NAME = "select * from product join category on product.categoryId = category.id where product.name like ?";
     private Connection connection;
 
     {
@@ -31,7 +37,7 @@ public class ProductDao implements IGeneralProductDao {
         List<Product> productList = new ArrayList<>();
         Product product;
 
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from product join category on product.categoryId = category.id");
+        PreparedStatement preparedStatement = connection.prepareStatement(JDBC_SELECT_ALL);
         ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()){
             int id = resultSet.getInt(1);
@@ -51,7 +57,7 @@ public class ProductDao implements IGeneralProductDao {
     public Product findById(int id) throws SQLException, ClassNotFoundException {
         Product product;
 
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from product join category on product.categoryId = category.id where product.id = ?");
+        PreparedStatement preparedStatement = connection.prepareStatement(JDBC_SELECT_BY_ID);
         preparedStatement.setInt(1,id);
         ResultSet resultSet = preparedStatement.executeQuery();
         while(resultSet.next()) {
@@ -71,7 +77,7 @@ public class ProductDao implements IGeneralProductDao {
 
     @Override
     public boolean createProduct(Product product) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement("insert into product(name, price, quantity,color, description, categoryId) values(?,?,?,?,?,?)");
+        PreparedStatement preparedStatement = connection.prepareStatement(JDBC_INSERT_PRODUCT);
         preparedStatement.setString(1, product.getName());
         preparedStatement.setDouble(2, product.getPrice());
         preparedStatement.setString(3, product.getColor());
@@ -85,7 +91,7 @@ public class ProductDao implements IGeneralProductDao {
     @Override
     public boolean updateProductById(int id, Product product) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update product set name = ?, price = ?,quantity=? ,color =?, description = ?, categoryId = ? where id = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(JDBC_UPDATE_PRODUCT);
             preparedStatement.setString(1,product.getName());
             preparedStatement.setDouble(2,product.getPrice());
             preparedStatement.setInt(3,product.getQuantity());
@@ -106,7 +112,7 @@ public class ProductDao implements IGeneralProductDao {
 
         PreparedStatement preparedStatement = null;
         try {
-            preparedStatement = connection.prepareStatement("delete from product where id = ?");
+            preparedStatement = connection.prepareStatement(JDBC_DELETE_PRODUCT_BY_ID);
             preparedStatement.setInt(1,id);
             return preparedStatement.executeUpdate()>0;
         } catch (SQLException e) {
@@ -121,7 +127,7 @@ public class ProductDao implements IGeneralProductDao {
         try {
             Product product;
             List<Product> products = new ArrayList<>();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from product join category on product.categoryId = category.id where product.name like ?");
+            PreparedStatement preparedStatement = connection.prepareStatement(JDBC_FIND_PRODUCT_NAME);
             preparedStatement.setString(1, searchName);
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
