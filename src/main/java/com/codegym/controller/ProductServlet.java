@@ -65,14 +65,7 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Product> products = new ArrayList<>();
-        String searchName = request.getParameter("searchName");
-        products = productService.searchProductName(searchName);
-        request.setAttribute("products",products);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/list.jsp");
-        requestDispatcher.forward(request, response);
-    }
+
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -175,5 +168,13 @@ public class ProductServlet extends HttpServlet {
         productService.createProduct(product);
 
         response.sendRedirect("/products");
+    }
+    private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Product> products = new ArrayList<>();
+        String searchName = request.getParameter("searchName");
+        products = productService.searchProductName(searchName);
+        request.setAttribute("products",products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/list.jsp");
+        requestDispatcher.forward(request, response);
     }
 }
