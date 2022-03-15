@@ -9,4 +9,5 @@ public interface IGeneralService<T> {
     boolean createProduct(T t) throws SQLException;
     boolean updateProductById(int id, T t);
     boolean deleteProductById(int id);
+
 }

@@ -29,6 +29,11 @@
 
         </div>
         <div class="mb-3">
+            <label for="exampleInputEmail5" class="form-label">Quantity:</label>
+            <input type="text" class="form-control" id="exampleInputEmail5" name="quantity" value="${product.quantity}" aria-describedby="emailHelp" >
+
+        </div>
+        <div class="mb-3">
             <label for="exampleInputEmail3" class="form-label">Color:</label>
             <input type="text" class="form-control" id="exampleInputEmail3" name = "color" aria-describedby="emailHelp">
         </div>

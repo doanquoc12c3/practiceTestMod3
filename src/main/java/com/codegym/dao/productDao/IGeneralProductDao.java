@@ -21,4 +21,6 @@ public interface IGeneralProductDao extends IGeneralDao<Product> {
 
     @Override
     boolean deleteProductById(int id);
+
+    List<Product> searchProductName(String searchName);
 }

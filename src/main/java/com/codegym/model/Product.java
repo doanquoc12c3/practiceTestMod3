@@ -4,25 +4,34 @@ public class Product {
     private int id;
     private String name;
     private Double price;
+    private int quantity;
     private String color;
     private String description;
     private String category;
     private int categoryId;
 
-    public Product(int id, String name, Double price, String color, String description, int categoryId) {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Product(int id, String name, Double price, int quantity, String color, String description, int categoryId) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.color = color;
         this.description = description;
-
         this.categoryId = categoryId;
     }
 
-    public Product(int id, String name, Double price, String color, String description, String category) {
+    public Product(int id, String name, Double price,int quantity, String color, String description, String category) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
         this.color = color;
         this.description = description;
         this.category = category;
@@ -31,27 +40,30 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, Double price, String color, String description, String category, int categoryId) {
+    public Product(int id, String name, Double price, int quantity,String color, String description, String category, int categoryId) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
         this.color = color;
         this.description = description;
         this.category = category;
         this.categoryId = categoryId;
     }
 
-    public Product(String name, Double price, String color, String description, String category) {
+    public Product(String name, Double price,int quantity, String color, String description, String category) {
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
         this.color = color;
         this.description = description;
         this.category = category;
     }
 
-    public Product(String name, Double price, String color, String description, int categoryId) {
+    public Product(String name, Double price,int quantity, String color, String description, int categoryId) {
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
         this.color = color;
         this.description = description;
         this.categoryId = categoryId;

@@ -25,16 +25,13 @@
                     <a href="/products?action=create"><button class="btn btn-primary me-md-2" type="button"><i class="fas fa-plus"></i> Thêm sản phẩm</button></a>
                 </div>
             </div>
+
             <div class="col">
-            <form action="/products?action=searchName" method="post">
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <input type="text" class=" me-md-2" placeholder="Search" name="searchName">
-                        <button class="btn btn-primary" ><i class="fas fa-search"></i> Search</button>
-                    </div>
-            </form>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input type="text" class=" me-md-2" placeholder="Search" name="searchName">
+                    <button class="btn btn-primary" type="button"><i class="fas fa-search"></i> Search</button>
+                </div>
             </div>
-
         </div>
         <br>
         <div class="card">
@@ -45,14 +42,13 @@
                 <blockquote class="blockquote mb-0">
                     <table class = "table table-bordered" >
                         <thead>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Color</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th colspan="2">Action</th>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Color</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th colspan="2">Action</th>
                         </thead>
                         <tbody>
                         <c:forEach var="product" items="${products}" varStatus="loop">
@@ -60,7 +56,6 @@
                                 <td>${loop.count}</td>
                                 <td>${product.name}</td>
                                 <td>${product.price}</td>
-                                <td>${product.quantity}</td>
                                 <td>${product.color}</td>
                                 <td>${product.description}</td>
                                 <td>${product.category}</td>

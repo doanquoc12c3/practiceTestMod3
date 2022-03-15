@@ -54,6 +54,7 @@ public class ProductServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 break;
+
             default:
                 try {
                     showListProduct(request, response);
@@ -62,6 +63,15 @@ public class ProductServlet extends HttpServlet {
                 }
                 break;
         }
+    }
+
+    private void showSearchForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Product> products = new ArrayList<>();
+        String searchName = request.getParameter("searchName");
+        products = productService.searchProductName(searchName);
+        request.setAttribute("products",products);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/product/list.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
@@ -132,6 +142,9 @@ public class ProductServlet extends HttpServlet {
                 productService.deleteProductById(id);
                 response.sendRedirect("/products");
                 break;
+            case "searchName":
+                showSearchForm(request, response);
+                break;
         }
     }
 
@@ -139,10 +152,11 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         Double price = Double.valueOf(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String color = request.getParameter("color");
         String description = request.getParameter("description");
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-        Product product = new Product(name,price,color,description,categoryId);
+        Product product = new Product(name,price,quantity,color,description,categoryId);
         productService.updateProductById(id, product);
 
         response.sendRedirect("/products");
@@ -151,11 +165,12 @@ public class ProductServlet extends HttpServlet {
     private void createProduct(HttpServletRequest request,HttpServletResponse response) throws IOException, SQLException {
         String name = request.getParameter("name");
         Double price = Double.valueOf(request.getParameter("price"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         String color = request.getParameter("color");
         String description = request.getParameter("description");
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 
-        Product product = new Product(name, price, color, description, categoryId);
+        Product product = new Product(name, price,quantity, color, description, categoryId);
 
         productService.createProduct(product);
 

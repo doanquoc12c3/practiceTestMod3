@@ -53,4 +53,10 @@ public class ProductService implements IProductService {
 
         return productDao.deleteProductById(id);
     }
+
+    @Override
+    public List<Product> searchProductName(String searchName) {
+        searchName = "%"+searchName+"%";
+        return productDao.searchProductName(searchName);
+    }
 }
